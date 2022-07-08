@@ -1,0 +1,81 @@
+<div class="container mt-5">
+  <h1>Address form</h1>
+  <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+  <h3>Address 1:</h3>
+    <p>
+      <label >City</label>
+      <input type="text"  formControlName="city" class="form-control">
+      <span  class="err" *ngIf="submission && f.city.invalid">
+City is required*
+      </span>
+    </p>
+    <p>
+      <label >State</label>
+      <input type="text"  formControlName="state" class="form-control">
+       <span class="err" *ngIf="submission && f.state.errors">
+        State is required*
+      </span>
+    </p>
+    <p>
+      <label >Country</label>
+      <input type="text"  formControlName="country" class="form-control">
+      <span   class="err" *ngIf="submission && f.country.errors">
+        Country is required*
+              </span>
+    </p>
+    <p>
+      <label >Pincode</label>
+      <input type="number" formControlName="pincode" class="form-control">
+      <span  class="err" *ngIf="submission && f.pincode.errors">
+        Pincode is required*
+              </span>
+    </p>
+
+    <div formArrayName="address" >
+      <div *ngFor="let add of address().controls; let i=index" [formGroupName]="i">
+
+
+      <h3>Address {{i+2}} :</h3>
+      <p>
+        <label >City</label>
+        <input type="text"  formControlName="city1" class="form-control">
+        <span   class="err" *ngIf="submission && f.city1.errors">
+          City is required*
+                </span>
+      </p>
+      <p>
+        <label >State</label>
+        <input type="text"  formControlName="state1" class="form-control">
+        <span  class="err" *ngIf="submission && f.state1.errors">
+          State is required*
+                </span>
+      </p>
+      <p>
+        <label >Country</label>
+        <input type="text"  formControlName="country1" class="form-control">
+        <span  class="err" *ngIf="submission && f.country1.errors">
+          Country is required*
+                </span>
+      </p>
+      <p>
+        <label >Pincode</label>
+        <input type="number" formControlName="pincode1" class="form-control">
+        <span  class="err" *ngIf="submission && f.pincode1.errors">
+          Pincode is required*
+                </span>
+      </p>
+    </div >
+  </div>
+  <div>
+    <button type="button" class="btn btn-info" (click)="addAddress()">Add more address</button>
+  </div><br>
+    <button type="submit" class="btn btn-success">Submit</button>
+
+
+  </form>
+  <br/>
+  {{this.addressForm.value | json}}
+<br><br><br>
+</div>
+
+
